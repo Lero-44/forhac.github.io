@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#4CAF50">
+    <title>KidsCode Academy - Теорема Паскаля</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+    <header class="platform-header">
+        <h1>KidsCode Academy</h1>
+        <nav class="main-nav">
+            <a href="new3.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">home</span>
+                Главная
+            </a>
+            <a href="courses1.html" class="nav-item active" draggable="false">
+                <span class="material-symbols-outlined">school</span>
+                Курсы
+            </a>
+            <a href="progress.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">emoji_events</span>
+                Прогресс
+            </a>
+            <a href="profile.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">person</span>
+                Профиль
+            </a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="lesson-content">
+            <div class="progress-indicator">
+                <div class="progress-step completed">Введение</div>
+                <div class="progress-step active">Теорема</div>
+                <div class="progress-step">Финальная игра</div>
+            </div>
+
+            <div class="lesson-section theorem">
+                <h2>Теорема Паскаля для юных программистов</h2>
+                
+                <div class="theorem-content">
+                    <div class="theorem-card">
+                        <h3>🎮 Что такое биномиальные коэффициенты?</h3>
+                        <p>Представь, что у тебя есть два числа: a и b. Когда мы их складываем и возводим в степень, получаются интересные комбинации!</p>
+                        <div class="example">
+                            (a + b)² = a² + 2ab + b²
+                        </div>
+                        <p>Числа перед каждым слагаемым (1, 2, 1) - это и есть числа из треугольника Паскаля!</p>
+                    </div>
+
+                    <div class="theorem-card">
+                        <h3>🎲 Как это связано с программированием?</h3>
+                        <p>В программировании треугольник Паскаля помогает нам:</p>
+                        <ul>
+                            <li>Находить все возможные комбинации</li>
+                            <li>Решать задачи с вероятностями</li>
+                            <li>Создавать красивые узоры</li>
+                        </ul>
+                    </div>
+
+                    <div class="interactive-example">
+                        <h3>Попробуй сам!</h3>
+                        <p>Нажимай на числа, чтобы увидеть, как они получаются:</p>
+                        <div class="interactive-triangle">
+                            <div class="i-row">1</div>
+                            <div class="i-row">1 1</div>
+                            <div class="i-row">1 <span class="clickable" data-explains="1 + 1 = 2">2</span> 1</div>
+                            <div class="i-row">1 <span class="clickable" data-explains="1 + 2 = 3">3</span> <span class="clickable" data-explains="2 + 1 = 3">3</span> 1</div>
+                        </div>
+                    </div>
+
+                    <div class="checkpoint">
+                        <h3>✅ Проверь себя:</h3>
+                        <div class="checkbox-list">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" required>
+                                <span>Я понимаю, как получаются числа в треугольнике</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox" required>
+                                <span>Я знаю, что такое биномиальные коэффициенты</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox" required>
+                                <span>Я готов(а) применить знания на практике</span>
+                            </label>
+                        </div>
+                        <button id="continue-btn" class="primary-btn" disabled>Перейти к финальной игре</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.custom-checkbox input');
+            const continueBtn = document.getElementById('continue-btn');
+            const clickableNumbers = document.querySelectorAll('.clickable');
+
+            // Handle checkboxes
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+                    continueBtn.disabled = !allChecked;
+                });
+            });
+
+            // Handle clickable numbers
+            clickableNumbers.forEach(number => {
+                number.addEventListener('click', function() {
+                    const explanation = this.getAttribute('data-explains');
+                    // Remove active class from all numbers
+                    clickableNumbers.forEach(n => n.classList.remove('active'));
+                    // Add active class to clicked number
+                    this.classList.add('active');
+                    // Show tooltip with explanation
+                    showTooltip(this, explanation);
+                });
+            });
+
+            // Handle continue button
+            continueBtn.addEventListener('click', function() {
+                // Update progress in localStorage
+                const progress = JSON.parse(localStorage.getItem('pascalProgress') || '0');
+                localStorage.setItem('pascalProgress', '65'); // 65% after completing theory
+                window.location.href = 'pascal-final-game.html';
+            });
+
+            function showTooltip(element, text) {
+                const tooltip = document.createElement('div');
+                tooltip.className = 'tooltip';
+                tooltip.textContent = text;
+                element.appendChild(tooltip);
+                setTimeout(() => tooltip.remove(), 2000);
+            }
+        });
+    </script>
+</body>
+</html>

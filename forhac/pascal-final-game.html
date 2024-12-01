@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#4CAF50">
+    <title>KidsCode Academy - Финальная Игра</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+    <header class="platform-header">
+        <h1>KidsCode Academy</h1>
+        <nav class="main-nav">
+            <a href="new3.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">home</span>
+                Главная
+            </a>
+            <a href="courses1.html" class="nav-item active" draggable="false">
+                <span class="material-symbols-outlined">school</span>
+                Курсы
+            </a>
+            <a href="progress.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">emoji_events</span>
+                Прогресс
+            </a>
+            <a href="profile.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">person</span>
+                Профиль
+            </a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="lesson-content">
+            <div class="progress-indicator">
+                <div class="progress-step completed">Введение</div>
+                <div class="progress-step completed">Теорема</div>
+                <div class="progress-step active">Финальная игра</div>
+            </div>
+
+            <div class="lesson-section final-game">
+                <h2>Финальная игра: Программист Паскаля</h2>
+                
+                <div class="game-content">
+                    <div class="game-description">
+                        <p>Теперь ты знаешь всё о треугольнике Паскаля! Давай применим эти знания для решения настоящей программистской задачи.</p>
+                    </div>
+
+                    <div class="coding-challenge">
+                        <h3>🎮 Задача: Посчитать комбинации</h3>
+                        <p>У тебя есть робот, который может двигаться только вправо и вниз. Сколькими способами он может добраться из точки A в точку B?</p>
+                        
+                        <div class="game-grid">
+                            <div class="grid-cell start">A</div>
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell end">B</div>
+                        </div>
+
+                        <div class="hint-section">
+                            <button class="hint-btn secondary-btn">Подсказка</button>
+                            <div class="hint-content hidden">
+                                <p>Подумай: каждый путь состоит из шагов вправо (R) и вниз (D). Сколько шагов каждого типа нужно сделать?</p>
+                            </div>
+                        </div>
+
+                        <div class="answer-section">
+                            <label>Количество возможных путей:
+                                <input type="number" id="answer-input" class="number-input">
+                            </label>
+                            <button id="check-answer" class="primary-btn">Проверить ответ</button>
+                        </div>
+
+                        <div id="result-message" class="result-message hidden">
+                            <span class="material-symbols-outlined"></span>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div id="completion-message" class="completion-message hidden">
+                        <h3>🎉 Поздравляем!</h3>
+                        <p>Ты успешно завершил курс по теореме Паскаля! Теперь ты знаешь, как использовать этот удивительный треугольник в программировании.</p>
+                        <a href="courses1.html" class="primary-btn">Вернуться к курсам</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hintBtn = document.querySelector('.hint-btn');
+            const hintContent = document.querySelector('.hint-content');
+            const answerInput = document.getElementById('answer-input');
+            const checkAnswerBtn = document.getElementById('check-answer');
+            const resultMessage = document.getElementById('result-message');
+            const completionMessage = document.getElementById('completion-message');
+
+            hintBtn.addEventListener('click', function() {
+                hintContent.classList.toggle('hidden');
+            });
+
+            checkAnswerBtn.addEventListener('click', function() {
+                const answer = parseInt(answerInput.value);
+                const correctAnswer = 6; // This is the correct number of paths for a 2x2 grid
+
+                resultMessage.classList.remove('hidden');
+                if (answer === correctAnswer) {
+                    resultMessage.querySelector('span').textContent = 'stars';
+                    resultMessage.querySelector('p').textContent = 'Правильно! Ты нашел все возможные пути!';
+                    resultMessage.className = 'result-message success';
+                    completionMessage.classList.remove('hidden');
+                    
+                    // Set final progress
+                    localStorage.setItem('pascalProgress', '100');
+                    
+                    // Add achievement
+                    const achievements = JSON.parse(localStorage.getItem('achievements') || '[]');
+                    if (!achievements.includes('pascal_master')) {
+                        achievements.push('pascal_master');
+                        localStorage.setItem('achievements', JSON.stringify(achievements));
+                    }
+
+                    // Trigger progress update event
+                    const progressEvent = new CustomEvent('updatePascalProgress', {
+                        detail: { progress: 100 }
+                    });
+                    window.dispatchEvent(progressEvent);
+                } else {
+                    resultMessage.querySelector('span').textContent = 'error';
+                    resultMessage.querySelector('p').textContent = 'Попробуй еще раз! Подсказка: используй треугольник Паскаля.';
+                    resultMessage.className = 'result-message error';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

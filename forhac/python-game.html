@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KidsCode Academy - Python Практика</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+    <header class="platform-header">
+        <h1>KidsCode Academy</h1>
+        <nav class="main-nav">
+            <a href="new3.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">home</span>
+                Главная
+            </a>
+            <a href="courses1.html" class="nav-item active" draggable="false">
+                <span class="material-symbols-outlined">school</span>
+                Курсы
+            </a>
+            <a href="progress.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">emoji_events</span>
+                Прогресс
+            </a>
+            <a href="profile.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">person</span>
+                Профиль
+            </a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="lesson-content">
+            <div class="progress-indicator">
+                <div class="progress-step completed">Теория Python</div>
+                <div class="progress-step active">Практика</div>
+                <div class="progress-step">Достижение</div>
+            </div>
+
+            <div class="game-section">
+                <h2>Собери программу 🎮</h2>
+                <p class="game-description">Перетащи блоки кода в правильном порядке, чтобы создать работающую программу!</p>
+
+                <div class="game-container">
+                    <div class="task-description">
+                        <h3>Задача:</h3>
+                        <p>Создай программу, которая:</p>
+                        <ol>
+                            <li>Спрашивает имя пользователя</li>
+                            <li>Проверяет возраст</li>
+                            <li>Выводит персональное приветствие</li>
+                        </ol>
+                    </div>
+
+                    <div class="code-blocks-container">
+                        <div class="code-source" id="source">
+                            <div class="code-block" draggable="true" data-order="3">
+                                <pre>if возраст >= 12:
+    print("Ты уже большой, " + имя + "!")
+else:
+    print("Ты растёшь, " + имя + "!")</pre>
+                            </div>
+                            <div class="code-block" draggable="true" data-order="1">
+                                <pre>имя = input("Как тебя зовут? ")</pre>
+                            </div>
+                            <div class="code-block" draggable="true" data-order="2">
+                                <pre>возраст = int(input("Сколько тебе лет? "))</pre>
+                            </div>
+                        </div>
+
+                        <div class="code-target" id="target">
+                            <div class="placeholder">Перетащи блоки сюда</div>
+                        </div>
+                    </div>
+
+                    <div class="game-controls">
+                        <button id="check-btn" class="primary-btn">Проверить программу</button>
+                        <button id="reset-btn" class="secondary-btn">Начать заново</button>
+                    </div>
+
+                    <div id="result-message" class="result-message hidden">
+                        <span class="material-symbols-outlined"></span>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const source = document.getElementById('source');
+            const target = document.getElementById('target');
+            const checkBtn = document.getElementById('check-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            const resultMessage = document.getElementById('result-message');
+            let draggedItem = null;
+
+            // Make code blocks draggable
+            document.querySelectorAll('.code-block').forEach(block => {
+                block.addEventListener('dragstart', function(e) {
+                    draggedItem = this;
+                    setTimeout(() => this.style.display = 'none', 0);
+                });
+
+                block.addEventListener('dragend', function() {
+                    setTimeout(() => this.style.display = 'block', 0);
+                    draggedItem = null;
+                });
+            });
+
+            // Handle drop target
+            target.addEventListener('dragover', function(e) {
+                e.preventDefault();
+            });
+
+            target.addEventListener('drop', function(e) {
+                e.preventDefault();
+                if (draggedItem) {
+                    if (this.querySelector('.placeholder')) {
+                        this.innerHTML = '';
+                    }
+                    this.appendChild(draggedItem);
+                }
+            });
+
+            // Check button handler
+            checkBtn.addEventListener('click', function() {
+                const blocks = target.querySelectorAll('.code-block');
+                let correct = true;
+                let lastOrder = 0;
+
+                blocks.forEach(block => {
+                    const order = parseInt(block.dataset.order);
+                    if (order <= lastOrder) {
+                        correct = false;
+                    }
+                    lastOrder = order;
+                });
+
+                resultMessage.classList.remove('hidden');
+                if (correct && blocks.length === 3) {
+                    resultMessage.querySelector('span').textContent = 'stars';
+                    resultMessage.querySelector('p').textContent = 'Отлично! Твоя программа работает правильно!';
+                    resultMessage.className = 'result-message success';
+                    
+                    // Update progress and redirect to achievement
+                    localStorage.setItem('pythonProgress', '80');
+                    setTimeout(() => {
+                        window.location.href = 'python-achievement.html';
+                    }, 2000);
+                } else {
+                    resultMessage.querySelector('span').textContent = 'error';
+                    resultMessage.querySelector('p').textContent = 'Попробуй еще раз! Подумай о логике программы.';
+                    resultMessage.className = 'result-message error';
+                }
+            });
+
+            // Reset button handler
+            resetBtn.addEventListener('click', function() {
+                while (target.firstChild) {
+                    if (!target.firstChild.classList.contains('placeholder')) {
+                        source.appendChild(target.firstChild);
+                    } else {
+                        target.removeChild(target.firstChild);
+                    }
+                }
+                target.innerHTML = '<div class="placeholder">Перетащи блоки сюда</div>';
+                resultMessage.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

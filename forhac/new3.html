@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#4CAF50">
+    <title>KidsCode Academy - Панель управления</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+    <header class="platform-header">
+        <h1>KidsCode Academy</h1>
+        <nav class="main-nav">
+            <a href="new3.html" class="nav-item active" draggable="false">
+                <span class="material-symbols-outlined">home</span>
+                Главная
+            </a>
+            <a href="courses1.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">school</span>
+                Курсы
+            </a>
+            <a href="progress.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">emoji_events</span>
+                Прогресс
+            </a>
+            <a href="profile.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">person</span>
+                Профиль
+            </a>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="dashboard-grid">
+            <!-- Welcome Card -->
+            <div class="dashboard-card welcome-card">
+                <h2>С возвращением, Ученик!</h2>
+                <p>Готов продолжить свой путь в программировании?</p>
+                <div class="progress-summary">
+                    <div class="progress-item">
+                        <span class="progress-label">Общий прогресс</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 50%"></div>
+                        </div>
+                        <span class="progress-value">50%</span>
+                    </div>
+                    <div class="course-progress-list">
+                        <div class="mini-progress">
+                            <span>Введение в Python</span>
+                            <div class="mini-bar">
+                                <div class="mini-fill" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="mini-progress">
+                            <span>Pascal</span>
+                            <div class="mini-bar">
+                                <div class="mini-fill" style="width: 45%"></div>
+                            </div>
+                        </div>
+                        <div class="mini-progress">
+                            <span>Алгоритмы</span>
+                            <div class="mini-bar">
+                                <div class="mini-fill" style="width: 30%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Lesson Card -->
+            <div class="dashboard-card next-lesson">
+                <h3>Следующий урок</h3>
+                <div class="lesson-info">
+                    <span class="material-symbols-outlined">code</span>
+                    <div class="lesson-details">
+                        <h4>Введение в Python</h4>
+                        <p>Урок 10 из 12</p>
+                    </div>
+                </div>
+                <button class="continue-btn">Продолжить обучение</button>
+            </div>
+
+            <!-- Achievements Card -->
+            <div class="dashboard-card achievements">
+                <h3>Последние достижения</h3>
+                <div class="achievement-list">
+                    <div class="achievement-item">
+                        <span class="material-symbols-outlined">stars</span>
+                        <span>Написана первая программа на Python</span>
+                    </div>
+                    <div class="achievement-item">
+                        <span class="material-symbols-outlined">military_tech</span>
+                        <span>5 дней подряд!</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats Card -->
+            <div class="dashboard-card stats">
+                <h3>Ваша статистика</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-value">17</span>
+                        <span class="stat-label">Уроков пройдено</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">3</span>
+                        <span class="stat-label">Курса начато</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">50%</span>
+                        <span class="stat-label">Общий прогресс</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

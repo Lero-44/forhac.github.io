@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#4CAF50">
+    <title>KidsCode Academy - Профиль</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+    <header class="platform-header">
+        <h1>KidsCode Academy</h1>
+        <nav class="main-nav">
+            <a href="new3.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">home</span>
+                Главная
+            </a>
+            <a href="courses1.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">school</span>
+                Курсы
+            </a>
+            <a href="progress.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">emoji_events</span>
+                Прогресс
+            </a>
+            <a href="profile.html" class="nav-item active" draggable="false">
+                <span class="material-symbols-outlined">person</span>
+                Профиль
+            </a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="main-content">
+            <header class="content-header">
+                <div class="profile-header">
+                    <h1>Профиль</h1>
+                    <p>Управление личной информацией и настройками</p>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <div class="profile-info">
+                            <h2>Иван Петров</h2>
+                            <span class="profile-role">Ученик</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-sections">
+                        <section class="profile-section">
+                            <h3>Личная информация</h3>
+                            <form class="profile-form">
+                                <div class="form-group">
+                                    <label for="name">Имя</label>
+                                    <input type="text" id="name" value="Иван" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="surname">Фамилия</label>
+                                    <input type="text" id="surname" value="Петров" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" value="ivan@example.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Телефон</label>
+                                    <input type="tel" id="phone" value="+7 (999) 123-45-67">
+                                </div>
+                                <button type="submit" class="save-profile-btn">Сохранить изменения</button>
+                            </form>
+                        </section>
+
+                        <section class="profile-section">
+                            <h3>Настройки</h3>
+                            <div class="settings-list">
+                                <div class="setting-item">
+                                    <span>Уведомления о новых уроках</span>
+                                    <label class="switch">
+                                        <input type="checkbox" checked data-setting="lesson-notifications">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <span>Email-уведомления</span>
+                                    <label class="switch">
+                                        <input type="checkbox" checked data-setting="email-notifications">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <span>Напоминания о занятиях</span>
+                                    <label class="switch">
+                                        <input type="checkbox" data-setting="study-reminders">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="profile-section">
+                            <h3>Безопасность</h3>
+                            <div class="security-options">
+                                <button class="security-btn" data-action="change-password">
+                                    <span class="material-symbols-outlined">lock</span>
+                                    Изменить пароль
+                                </button>
+                                <button class="security-btn" data-action="enable-2fa">
+                                    <span class="material-symbols-outlined">security</span>
+                                    Двухфакторная аутентификация
+                                </button>
+                                <button class="security-btn" data-action="connected-devices">
+                                    <span class="material-symbols-outlined">devices</span>
+                                    Подключенные устройства
+                                </button>
+                            </div>
+                            <div class="logout-section">
+                                <button class="logout-btn">
+                                    <span class="material-symbols-outlined">logout</span>
+                                    Выйти
+                                </button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="change-password-modal" class="modal">
+        <div class="modal-content">
+            <h3>Изменение пароля</h3>
+            <form>
+                <div class="form-group">
+                    <label for="current-password">Текущий пароль</label>
+                    <input type="password" id="current-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-password">Новый пароль</label>
+                    <input type="password" id="new-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Подтвердите пароль</label>
+                    <input type="password" id="confirm-password" required>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="cancel-btn" onclick="hideModal('change-password-modal')">Отмена</button>
+                    <button type="submit" class="save-btn">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="2fa-modal" class="modal">
+        <div class="modal-content">
+            <h3>Двухфакторная аутентификация</h3>
+            <p>Для включения двухфакторной аутентификации отсканируйте QR-код в приложении аутентификации:</p>
+            <div class="qr-code-placeholder" style="width: 200px; height: 200px; background: #f0f0f0; margin: 20px auto;"></div>
+            <div class="form-group">
+                <label for="2fa-code">Введите код подтверждения</label>
+                <input type="text" id="2fa-code" maxlength="6" required>
+            </div>
+            <div class="modal-buttons">
+                <button type="button" class="cancel-btn" onclick="hideModal('2fa-modal')">Отмена</button>
+                <button type="button" class="save-btn">Подтвердить</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

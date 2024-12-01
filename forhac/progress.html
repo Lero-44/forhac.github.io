@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#4CAF50">
+    <title>KidsCode Academy - Прогресс</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+    <header class="platform-header">
+        <h1>KidsCode Academy</h1>
+        <nav class="main-nav">
+            <a href="new3.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">home</span>
+                Главная
+            </a>
+            <a href="courses1.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">school</span>
+                Курсы
+            </a>
+            <a href="progress.html" class="nav-item active" draggable="false">
+                <span class="material-symbols-outlined">emoji_events</span>
+                Прогресс
+            </a>
+            <a href="profile.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">person</span>
+                Профиль
+            </a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="main-content">
+            <header class="content-header">
+                <div class="progress-header">
+                    <h1>Прогресс обучения</h1>
+                    <p>Отслеживайте свои достижения и прогресс в обучении</p>
+                </div>
+                <div class="user-menu">
+                    <div class="notifications">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span class="badge">2</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="images/avatar.png" alt="Профиль">
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <div class="progress-overview">
+                    <div class="progress-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <span class="material-symbols-outlined">school</span>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value">3</span>
+                                <span class="stat-label">Активных курсов</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <span class="material-symbols-outlined">timer</span>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value">24</span>
+                                <span class="stat-label">Часов обучения</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <span class="material-symbols-outlined">emoji_events</span>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value">12</span>
+                                <span class="stat-label">Достижений</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="progress-courses">
+                        <div class="course-progress">
+                            <div class="course-info">
+                                <h3>Введение в Python</h3>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="python-progress" style="width: 75%" data-course="python">
+                                        <div class="progress-shine"></div>
+                                    </div>
+                                </div>
+                                <p class="progress-text"><span id="python-progress-text">75</span>% завершено</p>
+                            </div>
+                        </div>
+
+                        <div class="course-progress">
+                            <div class="course-info">
+                                <h3>Pascal</h3>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="pascal-progress" style="width: 45%" data-course="pascal">
+                                        <div class="progress-shine"></div>
+                                    </div>
+                                </div>
+                                <p class="progress-text"><span id="pascal-progress-text">45</span>% завершено</p>
+                            </div>
+                        </div>
+
+                        <div class="course-progress">
+                            <div class="course-info">
+                                <span class="course-name">Алгоритмы</span>
+                                <span class="progress-percent">30%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 30%" data-course="algo">
+                                    <div class="progress-shine"></div>
+                                </div>
+                            </div>
+                            <div class="lessons-info">
+                                <span>Пройдено уроков: 3/10</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="achievements-section">
+                        <h2>Достижения</h2>
+                        <div class="achievements-list">
+                        </div>
+                    </div>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            // Update progress bars based on localStorage
+                            function updateProgress() {
+                                const progressBars = document.querySelectorAll('.progress-fill');
+                                progressBars.forEach(bar => {
+                                    const course = bar.getAttribute('data-course');
+                                    const progress = localStorage.getItem(course + 'Progress') || '0';
+                                    bar.style.width = progress + '%';
+                                    const textElement = bar.closest('.course-progress').querySelector('.progress-text');
+                                    if (textElement) {
+                                        textElement.textContent = progress + '%';
+                                    }
+                                });
+
+                                // Update achievements
+                                const achievements = JSON.parse(localStorage.getItem('achievements') || '[]');
+                                const achievementsList = document.querySelector('.achievements-list');
+                                achievementsList.innerHTML = ''; // Clear existing achievements
+
+                                // Define course achievements
+                                const courseAchievements = {
+                                    'python_master': {
+                                        icon: 'code',
+                                        title: 'Python Мастер',
+                                        description: 'Успешно завершил курс Python'
+                                    },
+                                    'pascal_master': {
+                                        icon: 'functions',
+                                        title: 'Pascal Мастер',
+                                        description: 'Успешно завершил курс Pascal'
+                                    },
+                                    'algo_master': {
+                                        icon: 'robot',
+                                        title: 'Повелитель Алгоритмов',
+                                        description: 'Успешно прошел курс по алгоритмам'
+                                    }
+                                };
+
+                                // Add earned achievements
+                                achievements.forEach(achievementId => {
+                                    const achievement = courseAchievements[achievementId];
+                                    if (achievement) {
+                                        const achievementElement = document.createElement('div');
+                                        achievementElement.className = 'achievement';
+                                        achievementElement.innerHTML = `
+                                            <span class="material-symbols-outlined">${achievement.icon}</span>
+                                            <div class="achievement-info">
+                                                <h3>${achievement.title}</h3>
+                                                <p>${achievement.description}</p>
+                                            </div>
+                                        `;
+                                        achievementsList.appendChild(achievementElement);
+                                    }
+                                });
+                            }
+
+                            // Listen for progress updates from all courses
+                            ['updatePythonProgress', 'updatePascalProgress', 'updateAlgoProgress'].forEach(event => {
+                                window.addEventListener(event, updateProgress);
+                            });
+
+                            // Initial progress update
+                            updateProgress();
+                        });
+                    </script>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KidsCode Academy - Введение в Python</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+    <header class="platform-header">
+        <h1>KidsCode Academy</h1>
+        <nav class="main-nav">
+            <a href="new3.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">home</span>
+                Главная
+            </a>
+            <a href="courses1.html" class="nav-item active" draggable="false">
+                <span class="material-symbols-outlined">school</span>
+                Курсы
+            </a>
+            <a href="progress.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">emoji_events</span>
+                Прогресс
+            </a>
+            <a href="profile.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">person</span>
+                Профиль
+            </a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="lesson-content">
+            <div class="progress-indicator">
+                <div class="progress-step active">Теория Python</div>
+                <div class="progress-step">Практика</div>
+                <div class="progress-step">Достижение</div>
+            </div>
+
+            <div class="theory-section">
+                <h2>Основы Python 🐍</h2>
+                
+                <div class="theory-cards">
+                    <div class="theory-card">
+                        <h3>1. Переменные и типы данных</h3>
+                        <div class="code-example">
+                            <pre><code>имя = "Алиса"  # строка
+возраст = 12    # число
+рост = 1.5      # дробное число
+любит_код = True  # логическое значение</code></pre>
+                        </div>
+                        <p>В Python можно хранить разные типы данных в переменных!</p>
+                    </div>
+
+                    <div class="theory-card">
+                        <h3>2. Условия</h3>
+                        <div class="code-example">
+                            <pre><code>if возраст >= 12:
+    print("Ты уже большой!")
+else:
+    print("Ты ещё растёшь!")</code></pre>
+                        </div>
+                        <p>С помощью условий программа может принимать решения!</p>
+                    </div>
+
+                    <div class="theory-card">
+                        <h3>3. Циклы</h3>
+                        <div class="code-example">
+                            <pre><code>for i in range(5):
+    print("Привет " + str(i))</code></pre>
+                        </div>
+                        <p>Циклы помогают повторять действия много раз!</p>
+                    </div>
+
+                    <div class="theory-card">
+                        <h3>4. Функции</h3>
+                        <div class="code-example">
+                            <pre><code>def поздороваться(имя):
+    return "Привет, " + имя + "!"
+
+приветствие = поздороваться("Алиса")</code></pre>
+                        </div>
+                        <p>Функции - это мини-программы внутри программы!</p>
+                    </div>
+                </div>
+
+                <div class="interactive-check">
+                    <h3>Проверь своё понимание:</h3>
+                    <div class="quiz-section">
+                        <div class="quiz-item">
+                            <p>Какой тип данных используется для хранения текста?</p>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q1" value="string"> Строка (string)</label>
+                                <label><input type="radio" name="q1" value="number"> Число (number)</label>
+                            </div>
+                        </div>
+                        <div class="quiz-item">
+                            <p>Что делает цикл for?</p>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q2" value="repeat"> Повторяет код несколько раз</label>
+                                <label><input type="radio" name="q2" value="decide"> Принимает решения</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="continue-btn" class="primary-btn" disabled>Перейти к практике</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const quizInputs = document.querySelectorAll('input[type="radio"]');
+            const continueBtn = document.getElementById('continue-btn');
+
+            function checkAnswers() {
+                const q1Answer = document.querySelector('input[name="q1"]:checked')?.value;
+                const q2Answer = document.querySelector('input[name="q2"]:checked')?.value;
+                
+                if (q1Answer === 'string' && q2Answer === 'repeat') {
+                    continueBtn.disabled = false;
+                    localStorage.setItem('pythonProgress', '40');
+                } else {
+                    continueBtn.disabled = true;
+                }
+            }
+
+            quizInputs.forEach(input => {
+                input.addEventListener('change', checkAnswers);
+            });
+
+            continueBtn.addEventListener('click', function() {
+                window.location.href = 'python-game.html';
+            });
+        });
+    </script>
+</body>
+</html>

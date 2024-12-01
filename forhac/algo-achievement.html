@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KidsCode Academy - Достижение</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+    <header class="platform-header">
+        <h1>KidsCode Academy</h1>
+        <nav class="main-nav">
+            <a href="new3.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">home</span>
+                Главная
+            </a>
+            <a href="courses1.html" class="nav-item active" draggable="false">
+                <span class="material-symbols-outlined">school</span>
+                Курсы
+            </a>
+            <a href="progress.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">emoji_events</span>
+                Прогресс
+            </a>
+            <a href="profile.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">person</span>
+                Профиль
+            </a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="lesson-content">
+            <div class="progress-indicator">
+                <div class="progress-step completed">Теория</div>
+                <div class="progress-step completed">Лабиринт</div>
+                <div class="progress-step active">Достижение</div>
+            </div>
+
+            <div class="achievement-section">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <span class="material-symbols-outlined">robot</span>
+                    </div>
+                    <h2>Поздравляем! 🎉</h2>
+                    <h3>Ты получил достижение:</h3>
+                    <div class="achievement-title">
+                        <span>"Повелитель Алгоритмов"</span>
+                    </div>
+                    <p class="achievement-description">
+                        Ты успешно изучил основы алгоритмов и провел робота через лабиринт!
+                        Теперь ты умеешь:
+                    </p>
+                    <ul class="achievement-skills">
+                        <li>Понимать, что такое алгоритм</li>
+                        <li>Писать последовательность команд</li>
+                        <li>Использовать команду повторения</li>
+                        <li>Решать алгоритмические задачи</li>
+                    </ul>
+                    <div class="achievement-footer">
+                        <a href="progress.html" class="primary-btn">Посмотреть прогресс</a>
+                        <a href="courses1.html" class="secondary-btn">К другим курсам</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update final progress
+            localStorage.setItem('algoProgress', '100');
+            
+            // Add achievement to localStorage
+            const achievements = JSON.parse(localStorage.getItem('achievements') || '[]');
+            if (!achievements.includes('algo_master')) {
+                achievements.push('algo_master');
+                localStorage.setItem('achievements', JSON.stringify(achievements));
+            }
+
+            // Trigger progress update event
+            const progressEvent = new CustomEvent('updateAlgoProgress', {
+                detail: { progress: 100 }
+            });
+            window.dispatchEvent(progressEvent);
+        });
+    </script>
+</body>
+</html>

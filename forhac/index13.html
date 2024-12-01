@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#4CAF50">
+    <title>KidsCode Academy - Регистрация</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-container">
+        <header class="platform-header">
+            <div class="logo-container">
+                <img src="C:\Users\kiril\Downloads\змея .png" alt="KidsCode Logo" class="logo-image">
+                <h1>KidsCode Academy</h1>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <div class="registration-container">
+                <div class="registration-card">
+                    <div class="card-header">
+                        <h2>Добро пожаловать!</h2>
+                        <p class="subtitle">Создайте аккаунт и начните обучение</p>
+                    </div>
+
+                    <form id="registrationForm" class="registration-form">
+                        <div class="form-group">
+                            <span class="material-symbols-outlined">person</span>
+                            <input type="text" id="username" name="username" placeholder="Имя пользователя" required>
+                            <span class="form-hint">Минимум 3 символа</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <span class="material-symbols-outlined">mail</span>
+                            <input type="email" id="email" name="email" placeholder="Email" required>
+                            <span class="form-hint">Например: name@example.com</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <span class="material-symbols-outlined">lock</span>
+                            <input type="password" id="password" name="password" placeholder="Пароль" required>
+                            <span class="form-hint">Минимум 8 символов</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <span class="material-symbols-outlined">lock_reset</span>
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Подтвердите пароль" required>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="terms-checkbox">
+                                <input type="checkbox" id="agreeTerms" required>
+                                <span class="checkmark"></span>
+                                <span class="terms-text">Я согласен с <a href="#" class="terms-link">условиями использования</a></span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="register-button">
+                            <span class="button-text">Создать аккаунт</span>
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                    </form>
+
+                    <div class="card-footer">
+                        <p class="login-link">
+                            Уже есть аккаунт? <a href="login.html">Войдите</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

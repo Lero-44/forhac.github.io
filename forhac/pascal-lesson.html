@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#4CAF50">
+    <title>KidsCode Academy - Теорема Паскаля</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+    <header class="platform-header">
+        <h1>KidsCode Academy</h1>
+        <nav class="main-nav">
+            <a href="new3.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">home</span>
+                Главная
+            </a>
+            <a href="courses1.html" class="nav-item active" draggable="false">
+                <span class="material-symbols-outlined">school</span>
+                Курсы
+            </a>
+            <a href="progress.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">emoji_events</span>
+                Прогресс
+            </a>
+            <a href="profile.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">person</span>
+                Профиль
+            </a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="lesson-content">
+            <div class="progress-indicator">
+                <div class="progress-step active">Введение</div>
+                <div class="progress-step">Теорема</div>
+                <div class="progress-step">Финальная игра</div>
+            </div>
+            <div class="lesson-section theory" id="theory-section">
+                <h2>Треугольник Паскаля</h2>
+                <div class="theory-content">
+                    <p class="intro">Привет, юный программист! Сегодня мы познакомимся с удивительным математическим треугольником, который придумал Блез Паскаль. 🎮</p>
+                    
+                    <div class="pascal-triangle">
+                        <div class="row">1</div>
+                        <div class="row">1 1</div>
+                        <div class="row">1 2 1</div>
+                        <div class="row">1 3 3 1</div>
+                        <div class="row">1 4 6 4 1</div>
+                    </div>
+
+                    <div class="theory-text">
+                        <h3>Как это работает? 🤔</h3>
+                        <p>Треугольник Паскаля - это волшебная пирамидка чисел, где:</p>
+                        <ul>
+                            <li>Каждая строка начинается и заканчивается единицей (1)</li>
+                            <li>Каждое число - это сумма двух чисел над ним</li>
+                            <li>Например: 3 = 1 + 2, 6 = 3 + 3</li>
+                        </ul>
+                    </div>
+
+                    <div class="fun-fact">
+                        <span class="material-symbols-outlined">lightbulb</span>
+                        <p>Этот треугольник используется в программировании для решения многих задач!</p>
+                    </div>
+
+                    <button id="understood-btn" class="primary-btn">Я понял(а)! Давайте играть!</button>
+                </div>
+            </div>
+
+            <div class="lesson-section game hidden" id="game-section">
+                <h2>Игра: Построй Треугольник</h2>
+                <div class="game-content">
+                    <p class="game-instruction">Заполни пустые клетки правильными числами!</p>
+                    
+                    <div class="game-board">
+                        <div class="game-row">1</div>
+                        <div class="game-row">1 1</div>
+                        <div class="game-row">1 <input type="number" class="number-input" data-correct="2"> 1</div>
+                        <div class="game-row">1 <input type="number" class="number-input" data-correct="3"> <input type="number" class="number-input" data-correct="3"> 1</div>
+                        <div class="game-row">1 <input type="number" class="number-input" data-correct="4"> <input type="number" class="number-input" data-correct="6"> <input type="number" class="number-input" data-correct="4"> 1</div>
+                    </div>
+
+                    <div class="game-controls">
+                        <button id="check-btn" class="primary-btn">Проверить</button>
+                        <button id="reset-btn" class="secondary-btn">Начать заново</button>
+                    </div>
+
+                    <div id="result-message" class="result-message hidden">
+                        <span class="material-symbols-outlined"></span>
+                        <p></p>
+                    </div>
+
+                    <div id="continue-section" class="continue-section hidden">
+                        <h3>🎉 Отлично!</h3>
+                        <p>Ты успешно освоил основы треугольника Паскаля. Теперь давай изучим теорему подробнее!</p>
+                        <a href="pascal-theorem.html" class="primary-btn">Перейти к теореме</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const theorySection = document.getElementById('theory-section');
+            const gameSection = document.getElementById('game-section');
+            const understoodBtn = document.getElementById('understood-btn');
+            const checkBtn = document.getElementById('check-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            const resultMessage = document.getElementById('result-message');
+            const inputs = document.querySelectorAll('.number-input');
+
+            understoodBtn.addEventListener('click', function() {
+                theorySection.classList.add('hidden');
+                gameSection.classList.remove('hidden');
+            });
+
+            checkBtn.addEventListener('click', function() {
+                let allCorrect = true;
+                inputs.forEach(input => {
+                    const correct = parseInt(input.dataset.correct);
+                    const value = parseInt(input.value);
+                    if (value !== correct) {
+                        allCorrect = false;
+                    }
+                });
+
+                resultMessage.classList.remove('hidden');
+                if (allCorrect) {
+                    resultMessage.querySelector('span').textContent = 'stars';
+                    resultMessage.querySelector('p').textContent = 'Отлично! Ты правильно построил треугольник Паскаля!';
+                    resultMessage.className = 'result-message success';
+                    document.getElementById('continue-section').classList.remove('hidden');
+                } else {
+                    resultMessage.querySelector('span').textContent = 'error';
+                    resultMessage.querySelector('p').textContent = 'Попробуй еще раз! Помни: каждое число - это сумма двух чисел над ним.';
+                    resultMessage.className = 'result-message error';
+                }
+            });
+
+            resetBtn.addEventListener('click', function() {
+                inputs.forEach(input => input.value = '');
+                resultMessage.classList.add('hidden');
+                document.getElementById('continue-section').classList.add('hidden');
+            });
+
+            const continueBtn = document.querySelector('#continue-section a');
+            if (continueBtn) {
+                continueBtn.addEventListener('click', function() {
+                    localStorage.setItem('pascalProgress', '35'); // 35% after intro game
+                });
+            }
+        });
+    </script>
+</body>
+</html>

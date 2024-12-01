@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KidsCode Academy - Алгоритмы</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+    <header class="platform-header">
+        <h1>KidsCode Academy</h1>
+        <nav class="main-nav">
+            <a href="new3.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">home</span>
+                Главная
+            </a>
+            <a href="courses1.html" class="nav-item active" draggable="false">
+                <span class="material-symbols-outlined">school</span>
+                Курсы
+            </a>
+            <a href="progress.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">emoji_events</span>
+                Прогресс
+            </a>
+            <a href="profile.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">person</span>
+                Профиль
+            </a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="lesson-content">
+            <div class="progress-indicator">
+                <div class="progress-step active">Теория</div>
+                <div class="progress-step">Лабиринт</div>
+                <div class="progress-step">Достижение</div>
+            </div>
+
+            <div class="theory-section">
+                <h2>Основы Алгоритмов 🤖</h2>
+                
+                <div class="algo-theory-cards">
+                    <div class="algo-card">
+                        <h3>Что такое алгоритм?</h3>
+                        <p>Алгоритм - это последовательность команд для решения задачи. Как рецепт для приготовления пирога!</p>
+                        <div class="example-box">
+                            <p>Пример: Алгоритм чистки зубов</p>
+                            <ol>
+                                <li>Взять зубную щетку</li>
+                                <li>Намочить щетку</li>
+                                <li>Выдавить пасту</li>
+                                <li>Почистить зубы</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="algo-card important">
+                        <h3>Команды для нашего робота</h3>
+                        <div class="commands-list">
+                            <div class="command">
+                                <code>ВПЕРЕД</code>
+                                <span>Шаг вперёд</span>
+                            </div>
+                            <div class="command">
+                                <code>НАЛЕВО</code>
+                                <span>Поворот налево</span>
+                            </div>
+                            <div class="command">
+                                <code>НАПРАВО</code>
+                                <span>Поворот направо</span>
+                            </div>
+                            <div class="command">
+                                <code>ПОВТОРИТЬ 2</code>
+                                <span>Повторить следующую команду 2 раза</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="algo-card">
+                        <h3>Как писать алгоритм?</h3>
+                        <p>1. Каждая команда пишется с новой строки</p>
+                        <p>2. Команды выполняются по порядку</p>
+                        <div class="example-box">
+                            <p>Пример правильного алгоритма:</p>
+                            <pre>ВПЕРЕД
+НАЛЕВО
+ПОВТОРИТЬ 2
+ВПЕРЕД</pre>
+                        </div>
+                    </div>
+
+                    <div class="algo-card practice">
+                        <h3>Давай потренируемся!</h3>
+                        <div class="mini-practice">
+                            <div class="practice-grid">
+                                <div class="grid-cell start">🤖</div>
+                                <div class="grid-cell"></div>
+                                <div class="grid-cell target">🎯</div>
+                            </div>
+                            <div class="practice-input">
+                                <p>Напиши алгоритм, чтобы робот дошёл до цели:</p>
+                                <textarea id="practice-code" rows="3"></textarea>
+                                <button id="practice-check" class="primary-btn">Проверить</button>
+                            </div>
+                            <div id="practice-result" class="hidden"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="theory-navigation">
+                    <button onclick="window.location.href='algo-game.html'" class="next-button">
+                        <span>Перейти к практике</span>
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const practiceCode = document.getElementById('practice-code');
+            const practiceCheck = document.getElementById('practice-check');
+            const practiceResult = document.getElementById('practice-result');
+
+            practiceCheck.addEventListener('click', function() {
+                const code = practiceCode.value.trim().toUpperCase();
+                const solution = 'ВПЕРЕД\nВПЕРЕД';
+                
+                practiceResult.classList.remove('hidden');
+                if (code === solution) {
+                    practiceResult.textContent = 'Отлично! Ты правильно написал алгоритм!';
+                    practiceResult.className = 'practice-result success';
+                    localStorage.setItem('algoProgress', '40');
+                } else {
+                    practiceResult.textContent = 'Попробуй еще раз! Подсказка: нужно дойти до цели за 2 шага.';
+                    practiceResult.className = 'practice-result error';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

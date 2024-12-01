@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#4CAF50">
+    <title>KidsCode Academy - Курсы</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+    <header class="platform-header">
+        <h1>KidsCode Academy</h1>
+        <nav class="main-nav">
+            <a href="new3.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">home</span>
+                Главная
+            </a>
+            <a href="courses1.html" class="nav-item active" draggable="false">
+                <span class="material-symbols-outlined">school</span>
+                Курсы
+            </a>
+            <a href="progress.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">emoji_events</span>
+                Прогресс
+            </a>
+            <a href="profile.html" class="nav-item" draggable="false">
+                <span class="material-symbols-outlined">person</span>
+                Профиль
+            </a>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <main class="main-content">
+            <header class="content-header">
+                <div class="courses-header">
+                    <h1>Курсы</h1>
+                    <p>Выберите курс и начните свое путешествие в мир программирования</p>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <div class="courses-grid">
+                    <!-- Python Course -->
+                    <div class="course-card">
+                        <div class="course-icon">
+                            <span class="material-symbols-outlined">code</span>
+                        </div>
+                        <div class="course-info">
+                            <h3>Python</h3>
+                            <p>Изучи основы программирования на Python через игры и интерактивные задания!</p>
+                            <div class="course-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-course="python"></div>
+                                </div>
+                                <span class="progress-text">0%</span>
+                            </div>
+                            <a href="python-theory.html" class="start-btn">Начать</a>
+                        </div>
+                    </div>
+
+                    <!-- Pascal Course -->
+                    <div class="course-card">
+                        <div class="course-icon">
+                            <span class="material-symbols-outlined">functions</span>
+                        </div>
+                        <div class="course-info">
+                            <h3>Pascal</h3>
+                            <p>Освой программирование на Pascal через увлекательные уроки!</p>
+                            <div class="course-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-course="pascal"></div>
+                                </div>
+                                <span class="progress-text">0%</span>
+                            </div>
+                            <a href="pascal-lesson.html" class="start-btn">Начать</a>
+                        </div>
+                    </div>
+
+                    <!-- Algorithms Course -->
+                    <div class="course-card">
+                        <div class="course-icon">
+                            <span class="material-symbols-outlined">data_object</span>
+                        </div>
+                        <div class="course-info">
+                            <h3>Алгоритмы</h3>
+                            <p>Научись писать алгоритмы и управлять роботом в лабиринте!</p>
+                            <div class="course-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-course="algo"></div>
+                                </div>
+                                <span class="progress-text">0%</span>
+                            </div>
+                            <a href="algo-theory.html" class="start-btn">Начать</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
